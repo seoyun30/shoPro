@@ -24,7 +24,7 @@ public class MemberService {
 
     //회원가입
     public Member saverMember(MemberDTO memberDTO){
-        
+        return null;
     }
 
 
