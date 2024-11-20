@@ -11,7 +11,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     //등록한 글을 수정할때 로그인한사람의 정보를 받아와서 글 등록한 사람과 비교시에도 사용
     //글을 댓글을 리뷰를 아이템을 삭제할떄도 같아야 삭제하는데 같은지 알려면
     //먼저 로그인한 사람의 정보를 받아와야함을 릴요
-    Member findbyEmail(String email);
+    Member findByEmail(String email);
 
 
 

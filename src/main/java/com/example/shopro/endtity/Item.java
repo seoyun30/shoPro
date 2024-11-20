@@ -1,6 +1,7 @@
 package com.example.shopro.endtity;
 
 import com.example.shopro.constant.ItemSellStatus;
+import com.example.shopro.endtity.base.BaseEntity;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Table(name="Item")
-public class Item {
+public class Item extends BaseEntity {
 
 
     @Id
@@ -41,6 +42,5 @@ public class Item {
     @Enumerated(EnumType.STRING)    //enum 가지고 만들 YES/NO, Sell/sold_out
     private ItemSellStatus itemSellStatus; //상품 판매 상태
 
-    private LocalDateTime regTime;      //상품등록시간
-    private LocalDateTime updateTime;    //상품 수정시간
+
 }
