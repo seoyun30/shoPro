@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -41,6 +42,14 @@ public class Item extends BaseEntity {
 
     @Enumerated(EnumType.STRING)    //enum 가지고 만들 YES/NO, Sell/sold_out
     private ItemSellStatus itemSellStatus; //상품 판매 상태
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "member_id")
+//    private Member member;
+
+    @OneToMany
+    @JoinColumn(name = "item_id")
+    private List<ItemImg> itemImgList;
 
 
 }

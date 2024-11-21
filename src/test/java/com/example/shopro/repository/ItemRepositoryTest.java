@@ -21,6 +21,7 @@ import org.springframework.data.annotation.PersistenceCreator;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -39,6 +40,20 @@ class ItemRepositoryTest {
     EntityManager entityManager;
 
     @Test
+    @DisplayName("양방향 테스트")
+    @Transactional
+    public void selectItem(){
+        //필요한 부모id 411L
+        //실행내용 부모를 item을 검색한다. 특정 pk갑승ㄹ 가지고
+        Item item =
+                itemRepository.findById(411L).get();
+        //결과 예상 부모를 검색하면 부모놔 자식의 모든데이터를 받는다
+        log.info(item);
+        log.info("아이템명"+item.getItemNm());
+        log.info("아이켐 이미지"+item.getItemImgList().get(0).getImgUrl());
+    }
+
+    @Test
     @DisplayName("상품 저장 테스트")
     public void createItemTest(){
 
@@ -50,8 +65,8 @@ class ItemRepositoryTest {
                             .itemDetail("테스트상품 상세설명")
                             .itemSellStatus(ItemSellStatus.SELL)
                             .stockNumber(100)
-                            .regTime(LocalDateTime.now())
-                            .updateTime(LocalDateTime.now())
+                            //.regTime(LocalDateTime.now())
+                            //.updateTime(LocalDateTime.now())
                             .build();
 
             item.setItemNm(item.getItemNm() + i);
